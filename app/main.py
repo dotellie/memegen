@@ -42,7 +42,7 @@ async def robots(request: Request):
 if __name__ == "__main__":
     app.run(
         host="0.0.0.0",
-        port=5000,
+        port=settings.PORT,
         debug=settings.DEBUG,
         auto_reload=True,
         access_log=False,
