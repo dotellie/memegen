@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Containerfile
+    pull_policy: build
     environment:
       PORT: 5435
     ports:
