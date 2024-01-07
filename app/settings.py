@@ -9,7 +9,7 @@ PLACEHOLDER = "string"  # Swagger UI placeholder value
 
 DEBUG = os.environ.get("DEBUG", "false") == "true"
 
-PORT = os.environ.get("PORT", "5000")
+PORT = int(os.environ.get("PORT", "5000"))
 
 if "DOMAIN" in os.environ:  # staging / production
     SERVER_NAME = os.environ["DOMAIN"]
@@ -56,7 +56,7 @@ MINIMUM_FRAMES = 5
 # Watermarks
 
 DISABLED_WATERMARK = "none"
-DEFAULT_WATERMARK = "Memegen.link"
+DEFAULT_WATERMARK = "websus.lol"
 ALLOWED_WATERMARKS = [DEFAULT_WATERMARK]
 
 WATERMARK_HEIGHT = 20

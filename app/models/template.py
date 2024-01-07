@@ -203,6 +203,7 @@ class Template:
         style: str = "",
         layout: str = "",
         font: str = "",
+        watermark: str = "",
     ):
         if normalize:
             with suppress(IndexError):
@@ -229,9 +230,14 @@ class Template:
             _external=True,
             _scheme=settings.SCHEME,
             **utils.urls.params(
-                background=background, style=style, layout=layout, font=font
+                background=background,
+                style=style,
+                layout=layout,
+                font=font,
+                watermark=watermark,
             ),
         )
+        print("HI", watermark, url)
         return utils.urls.clean(url)
 
     @property

@@ -3,12 +3,13 @@ from contextlib import suppress
 
 from sanic import exceptions, response
 from sanic.log import logger
+from sanic.request import Request
 
 from .. import models, settings, utils
 
 
 async def generate_url(
-    request, template_id: str = "", *, template_id_required: bool = False
+    request: Request, template_id: str = "", *, template_id_required: bool = False
 ):
     if request.form:
         payload = dict(request.form)
@@ -47,6 +48,7 @@ async def generate_url(
     font = utils.urls.arg(payload, "", "font")
     background = utils.urls.arg(payload, "", "background", "image_url")
     extension = utils.urls.arg(payload, "", "extension")
+    watermark: str = request.get_args().get("watermark") or ""
 
     if (
         background
@@ -67,6 +69,7 @@ async def generate_url(
             layout=layout,
             font=font,
             extension=extension,
+            watermark=watermark,
         )
         if not template.valid:
             status = 404
@@ -82,6 +85,7 @@ async def generate_url(
             layout=layout,
             font=font,
             extension=extension,
+            watermark=watermark,
         )
 
     url, _updated = await utils.meta.tokenize(request, url)
